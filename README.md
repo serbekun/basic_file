@@ -1,30 +1,38 @@
 # basic_file
 
-`basic_file` — это простая C++ библиотека для работы с текстовыми файлами.
+`basic_file` is a lightweight C++ header-only class for working with plain text files.  
+It provides simple functions to write, read, clear, and manage file content.
 
-## Возможности
+## Features
 
-- Запись в файл (перезапись или добавление)
-- Чтение построчно
-- Очистка файла
-- Получение имени файла
+- Set and get the filename
+- Rewrite a file with new content
+- Append data to a file
+- Read file content line by line
+- Read only the first line
+- Clear file content
 
-## Пример использования
+## Usage
+
+Include the header in your project:
 
 ```cpp
 #include "basic_file.hpp"
 
 int main() {
-    stdx::basic_file file("log.txt");
-    file.write("Привет из basic_file!\n");
+    stdx::basic_file file("example.txt");
+
+    file.rewrite("Hello from basic_file!\n");
+    file.write("Another line.\n");
+
     file.read();
+
+    return 0;
 }
-```
 
-## Установка
+Installation
 
-Просто добавьте `basic_file.hpp` в свой проект.
+Just copy the include/basic_file.hpp file into your project and include it where needed.
+License
 
-## Лицензия
-
-MIT
+This project is licensed under the MIT License - see the LICENSE file for details.
