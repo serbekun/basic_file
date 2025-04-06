@@ -27,6 +27,11 @@ int main() {
 
     file.read();
 
+    int x;
+    file.set("number.txt"); // change work file
+    file.write(x); // can write int data
+    file.read();
+    
     return 0;
 }
 
