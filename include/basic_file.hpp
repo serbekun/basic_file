@@ -4,12 +4,14 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 namespace stdx {
 
 class basic_file {
 
 private:
-    std::string filename;
+    string filename;
 
 public:
     
@@ -17,27 +19,27 @@ public:
         filename = "file";
     }
 
-    basic_file(const std::string &get_filename) {
+    basic_file(const string &get_filename) {
         filename = get_filename;
     }
 
     ~basic_file() = default;
 
-    void set(const std::string get_filename) {
+    void set(const string get_filename) {
         filename = get_filename;
     }
 
-    void rewrite(const std::string &data) {
-        std::ofstream file(filename); 
+    void rewrite(const string &data) {
+        ofstream file(filename); 
         file << data;
         file.close();
     }
 
-    void write(const std::string &data) {
-        std::ofstream file(filename, std::ios::app);
+    void write(const string &data) {
+        ofstream file(filename, ios::app);
 
         if (!file.is_open()) {
-            std::cerr << "Error open file -" << filename << std::endl;
+            cerr << "Error open file -" << filename << endl;
         } else {
             file << data;
             file.close();
@@ -45,42 +47,64 @@ public:
     }
 
     void read() {
-        std::ifstream file(filename);
-        std::string line;
+        ifstream file(filename);
+        string line;
 
         if (!file.is_open()) {
-            std::cerr << "Error open file - " << filename << std::endl;
+            cerr << "Error open file - " << filename << endl;
         } else {
-            while (std::getline(file, line)) {
-                std::cout << line << std::endl;
+            while (getline(file, line)) {
+                cout << line << endl;
             }
             file.close();
         }
     }
 
-    std::string get_read_line() {
-        std::ifstream file(filename);
-        std::string line;
+    string get_read_line() {
+        ifstream file(filename);
+        string line;
         if (!file.is_open()) {
-            std::cerr << "Error open file - " << filename << std::endl;
+            cerr << "Error open file - " << filename << endl;
             return "";
         } else {
-            std::getline(file, line);
+            getline(file, line);
             file.close();
             return line;
         }
     }
 
-    std::string get_file_name() {
+    string get_file_name() {
         return filename;
     }
 
     void clear_file() {
-        std::ofstream file(filename);
+        ofstream file(filename);
         
         if (!file.is_open()) {
-            std::cerr << "Error open file - " << filename << std::endl;
+            cerr << "Error open file - " << filename << endl;
         } else {
+            file.close();
+        }
+    }
+
+    void rewrite_int(int data) {
+        ofstream file(filename);
+
+        if (!file.is_open()) {
+            cerr << "Error open file - " << filename << endl;
+        } else {
+            file << data;
+            file.close();
+        }
+    }
+
+    void write_int(int data) {
+        ofstream file(filename, ios::app);
+
+        if (!file.is_open()) {
+            cerr << "Error open file - " << filename << endl;
+        } else {
+            file << data;
             file.close();
         }
     }
